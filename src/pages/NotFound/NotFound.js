@@ -4,14 +4,14 @@ import { useHistory } from 'react-router-dom';
 function NotFound() {
   const history = useHistory();
 
-  function handleNavegation(path) {
+  function handleNavigation(path) {
     return history.push(path);
   }
 
   return (
     <>
       <h1>Page not Found!</h1>
-      <button type="button" onClick={() => handleNavegation('/')}>
+      <button type="button" onClick={() => handleNavigation('/')}>
         Back
       </button>
     </>

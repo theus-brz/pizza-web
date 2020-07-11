@@ -4,14 +4,17 @@ import { useHistory } from 'react-router-dom';
 function Home() {
   const history = useHistory();
 
-  function handleNavegation(path) {
+  function handleNavigation(path) {
     return history.push(path);
   }
 
   return (
-    <button type="button" onClick={() => handleNavegation('/order')}>
-      Make your Pizza!
-    </button>
+    <div>
+      <h1>Pizza Web!</h1>
+      <button type="button" onClick={() => handleNavigation('/order')}>
+        Make your Pizza!
+      </button>
+    </div>
   );
 }
 
