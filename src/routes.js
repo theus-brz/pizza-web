@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home/Home';
-import Order from './pages/Order/Order';
 import NotFound from './pages/NotFound/NotFound';
+import Order from './pages/Order/Order';
 
 const Routes = () => (
   <BrowserRouter>
