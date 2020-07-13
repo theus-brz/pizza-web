@@ -1,27 +1,76 @@
 import React from 'react';
 
-function PaymentFormStep(values, errors, touched, handleChange, handleBlur) {
+import PropTypes from 'prop-types';
+
+import SelectorInput from '~/components/SelectorInput/SelectorInput';
+
+function PaymentFormStep(props) {
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    orderValues: { paymentMethods, deliveryOptions },
+  } = props;
   return (
     <div>
       <p>Forma de pagamento</p>
-      <input
-        type="email"
-        name="email"
+
+      <p>Método de pagamento</p>
+      <SelectorInput
+        name="payment"
+        value={values.payment}
         onChange={handleChange}
         onBlur={handleBlur}
-        value={values.email}
+        options={paymentMethods}
       />
-      {errors.email && touched.email && errors.email}
-      <input
-        type="password"
-        name="password"
+      {errors.payment && touched.payment && errors.payment}
+
+      <p>Entrega</p>
+      <SelectorInput
+        name="delivery"
+        value={values.delivery}
         onChange={handleChange}
         onBlur={handleBlur}
-        value={values.password}
+        options={deliveryOptions}
       />
-      {errors.password && touched.password && errors.password}
+      {errors.delivery && touched.delivery && errors.delivery}
     </div>
   );
 }
+
+PaymentFormStep.propTypes = {
+  orderValues: PropTypes.shape({
+    paymentMethods: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+    deliveryOptions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+  }).isRequired,
+  values: PropTypes.shape({
+    delivery: PropTypes.string.isRequired,
+    payment: PropTypes.string.isRequired,
+  }).isRequired,
+  touched: PropTypes.shape({
+    delivery: PropTypes.string.isRequired,
+    payment: PropTypes.string.isRequired,
+  }).isRequired,
+  errors: PropTypes.shape({
+    delivery: PropTypes.string.isRequired,
+    payment: PropTypes.string.isRequired,
+  }).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+};
 
 export default PaymentFormStep;

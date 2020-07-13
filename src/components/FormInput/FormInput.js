@@ -1,48 +1,41 @@
 import React from 'react';
-import InputMask from 'react-input-mask';
 
 import PropTypes from 'prop-types';
 
 import ErrorMessage from '~/components/ErrorMessage/ErrorMessage';
 
-import { MaskedInputWrapper, MaskedInputField } from './MaskedInputStyles';
+import { FormInputWrapper, FormInputField } from './FormInputStyles';
 
-function MaskedInput(props) {
+function FormInput(props) {
   const {
     type,
     name,
-    value,
     onChange,
     onBlur,
+    value,
     error,
     errorMessage,
     placeholder,
   } = props;
 
   return (
-    <MaskedInputWrapper>
-      <InputMask
+    <FormInputWrapper>
+      <FormInputField
+        type={type}
+        placeholder={placeholder}
         name={name}
-        mask="(99) 99999 9999"
+        onChange={onChange}
         onBlur={onBlur}
         value={value}
-        onChange={onChange}
-      >
-        {() => (
-          <MaskedInputField
-            name={name}
-            type={type}
-            error={error}
-            placeholder={placeholder}
-          />
-        )}
-      </InputMask>
+        error={error}
+        required
+      />
       {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
-    </MaskedInputWrapper>
+    </FormInputWrapper>
   );
 }
 
-MaskedInput.propTypes = {
+FormInput.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -53,9 +46,9 @@ MaskedInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
 };
 
-MaskedInput.defaultProps = {
+FormInput.defaultProps = {
   error: false,
   errorMessage: '',
 };
 
-export default MaskedInput;
+export default FormInput;

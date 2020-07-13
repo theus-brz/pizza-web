@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { HomeWrapper } from './HomeStyles';
+
 function Home() {
   const history = useHistory();
 
@@ -9,12 +11,12 @@ function Home() {
   }
 
   return (
-    <div>
+    <HomeWrapper>
       <h1>Pizza Web!</h1>
       <button type="button" onClick={() => handleNavigation('/order')}>
         Make your Pizza!
       </button>
-    </div>
+    </HomeWrapper>
   );
 }
 

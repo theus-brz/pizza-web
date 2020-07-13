@@ -4,49 +4,18 @@ import PizzaFlavourFormStep from './FormSteps/PizzaFlavourFormStep';
 import PizzaPastaFormStep from './FormSteps/PizzaPastaFormStep';
 import PizzaSizeFormStep from './FormSteps/PizzaSizeFormStep';
 
-function OrderFormStepController(
-  formStep,
-  values,
-  errors,
-  touched,
-  handleChange,
-  handleBlur
-) {
+function OrderFormStepController(formStep, wrappedParams) {
   switch (formStep) {
-    case 1:
-      return CustomerFormStep(
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur
-      );
-    case 2:
-      return PizzaSizeFormStep(
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur
-      );
+    case 0: // 1:
+      return CustomerFormStep(wrappedParams);
+    case 1: // 2:
+      return PizzaSizeFormStep(wrappedParams);
     case 3:
-      return PizzaPastaFormStep(
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur
-      );
+      return PizzaPastaFormStep(wrappedParams);
     case 4:
-      return PizzaFlavourFormStep(
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur
-      );
+      return PizzaFlavourFormStep(wrappedParams);
     case 5:
-      return PaymentFormStep(values, errors, touched, handleChange, handleBlur);
+      return PaymentFormStep(wrappedParams);
     default:
       break;
   }

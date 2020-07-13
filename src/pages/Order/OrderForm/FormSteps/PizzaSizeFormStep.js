@@ -1,35 +1,49 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
+import Card from '~/components/Card/Card';
 import SelectorInput from '~/components/SelectorInput/SelectorInput';
-import FLAVOUR_AMOUNT from '~/constants/PIZZA/FLAVOUR_AMOUNT';
-import SIZE from '~/constants/PIZZA/SIZE';
 
-function PizzaSizeFormStep(values, errors, touched, handleChange, handleBlur) {
+function PizzaSizeFormStep(props) {
+  const {
+    values,
+    handleChange,
+    handleBlur,
+    pizzaValues: { sizes },
+  } = props;
+
   return (
-    <div>
-      <p>Tamanho da Pizza</p>
-
-      <p>Tamanho</p>
+    <Card title="Tamanho da Pizza">
       <SelectorInput
+        placeholder="Tamanho"
         name="pizza.size"
         value={values.pizza.size}
         onChange={handleChange}
         onBlur={handleBlur}
-        options={SIZE}
+        options={sizes}
       />
-      {errors.email && touched.email && errors.email}
-
-      <p>Qtde. Sabores</p>
-      <SelectorInput
-        name="pizza.flavourAmount"
-        value={values.pizza.flavourAmount}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        options={FLAVOUR_AMOUNT}
-      />
-      {errors.password && touched.password && errors.password}
-    </div>
+    </Card>
   );
 }
+
+PizzaSizeFormStep.propTypes = {
+  pizzaValues: PropTypes.shape({
+    sizes: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+  }).isRequired,
+  values: PropTypes.shape({
+    pizza: PropTypes.shape({
+      size: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+};
 
 export default PizzaSizeFormStep;

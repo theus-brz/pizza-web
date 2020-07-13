@@ -1,3 +1,6 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({});
+import order from './order/reducer';
+import pizza from './pizza/reducer';
+
+export default combineReducers({ order, pizza });

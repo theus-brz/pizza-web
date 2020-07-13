@@ -24,6 +24,7 @@ module.exports = {
     "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     "react/jsx-one-expression-per-line": "off",
     "no-console": ["error", { allow: ["tron"] }],
+    "no-param-reassign": "off",
     "import-helpers/order-imports": [
       "warn",
       {
